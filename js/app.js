@@ -7,11 +7,34 @@ from "./views/HomeView.js";
 import { PDFService }
 from "./services/PDFService.js";
 
+import { renderAuth }
+from "./auth/AuthGuard.js";
+
+import { AuthService }
+from "./auth/AuthService.js";
+
 const repository =
   new LocalStorageRepository();
 
 const app =
   document.getElementById("app");
+
+renderAuth();
+
+if (
+  !AuthService.isAuthenticated()
+) {
+
+  document
+    .getElementById("app")
+    .style.display = "none";
+
+} else {
+
+  document
+    .getElementById("auth-screen")
+    .style.display = "none";
+}
 
 function render() {
 
