@@ -1,0 +1,55 @@
+:root {
+  --primary: #0b5ed7;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --success: #198754;
+  --bg: #ffffff;
+  --text: #222;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+}
+
+input, select {
+  padding: 0.7rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.card {
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
