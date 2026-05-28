@@ -17,6 +17,7 @@ export function renderAuth() {
     root.innerHTML = "";
 
     return;
+    
   }
 
 
@@ -49,6 +50,7 @@ export function renderAuth() {
 
     </div>
 
+  
 
     <form id="login-form">
 
@@ -83,7 +85,7 @@ export function renderAuth() {
         Entrar
       </button>
 
-      <p class="register-link">
+      <p class="register-link" style="color: black">
 
   ¿No tienes cuenta?
 
@@ -204,6 +206,7 @@ export function renderAuth() {
 
 </div>
 `;
+
 
 
   document

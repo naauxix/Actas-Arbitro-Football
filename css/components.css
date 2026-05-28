@@ -473,7 +473,7 @@ body {
 
 .login-screen {
 
-  min-height: 100vh;
+  min-height: calc(100vh - 90px);
 
   display: flex;
 
@@ -494,9 +494,63 @@ body {
 }
 
 .header-actions {
+
   display: flex;
-  align-items: center;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
   gap: .5rem;
+}
+
+#logout-btn,
+#toggle-dark {
+
+  height: 42px;
+
+  padding: 0 1rem;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: .9rem;
+
+  font-weight: 600;
+
+  transition: .2s;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+#toggle-dark {
+
+  background: white;
+
+  color: #222;
+}
+
+
+#logout-btn {
+
+  background: #d62828;
+
+  color: white;
+}
+
+
+#logout-btn:hover,
+#toggle-dark:hover {
+
+  opacity: .9;
 }
 
 .login-header {
@@ -653,4 +707,35 @@ body {
   letter-spacing: .05em;
 
   margin-top: .15rem;
+}
+
+.header {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  padding: 1rem;
+
+  background: var(--primary);
+
+  color: white;
+}
+
+.header h1 {
+
+  margin: 0;
+
+  font-size: 2.2rem;
+}
+
+.header-buttons {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: .7rem;
 }

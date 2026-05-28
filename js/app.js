@@ -28,6 +28,20 @@ renderAuth();
 const currentUser =
   AuthService.currentUser();
 
+const logoutBtn =
+  document.getElementById(
+    "logout-btn"
+  );
+
+if (!currentUser) {
+
+  if (logoutBtn) {
+
+    logoutBtn.style.display =
+      "none";
+  }
+}
+
 if (currentUser) {
 
   const userName =
