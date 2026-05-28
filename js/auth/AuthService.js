@@ -12,8 +12,9 @@ export class AuthService {
   static register({
 
     name,
-    email,
-    password
+    username,
+    password,
+    secretCode
 
   }) {
 
@@ -25,18 +26,44 @@ export class AuthService {
       );
 
 
-    // EMAIL REPETIDO
+    // USERNAME REPETIDO
     const exists =
       users.some(
-        u => u.email === email
+        u => u.username === username
       );
 
     if (exists) {
 
       throw new Error(
-        "Ese correo ya existe."
+        "Ese usuario ya existe."
       );
     }
+
+    // =========================
+// ROLES SEGÚN CÓDIGO
+// =========================
+
+let role = null;
+
+
+if (secretCode === "2674") {
+
+  role = "admin";
+}
+
+else if (
+  secretCode === "5798"
+) {
+
+  role = "referee";
+}
+
+else {
+
+  throw new Error(
+    "Código federativo inválido."
+  );
+}
 
 
     const user = {
@@ -45,11 +72,11 @@ export class AuthService {
 
       name,
 
-      email,
+      username,
 
       password,
 
-      role: "referee",
+      role,
 
       createdAt:
         new Date().toISOString()
@@ -74,7 +101,7 @@ export class AuthService {
   // =========================
 
   static login(
-    email,
+    username,
     password
   ) {
 
@@ -89,7 +116,7 @@ export class AuthService {
     const user =
       users.find(u =>
 
-        u.email === email
+        u.username === username
         &&
         u.password === password
       );
@@ -143,36 +170,43 @@ export class AuthService {
     );
   }
 
-  //Usuario por defecto
-static seedAdmin() {
 
-  const users =
-    JSON.parse(
-      localStorage.getItem(
-        USERS_KEY
-      ) || "[]"
+
+  // =========================
+  // USUARIO ADMIN POR DEFECTO
+  // =========================
+
+  static seedAdmin() {
+
+    const users =
+      JSON.parse(
+        localStorage.getItem(
+          USERS_KEY
+        ) || "[]"
+      );
+
+    if (users.length > 0) return;
+
+    users.push({
+
+      id: crypto.randomUUID(),
+
+      name: "Administrador",
+
+      username: "ffpsj",
+
+      password: "administrator",
+
+      role: "admin"
+    });
+
+    localStorage.setItem(
+      USERS_KEY,
+      JSON.stringify(users)
     );
+  }
 
-  if (users.length > 0) return;
 
-  users.push({
-
-    id: crypto.randomUUID(),
-
-    name: "Administrador",
-
-    email: "ffpsj@test.com",
-
-    password: "1234",
-
-    role: "admin"
-  });
-
-  localStorage.setItem(
-    USERS_KEY,
-    JSON.stringify(users)
-  );
-}
 
   // =========================
   // AUTENTICADO

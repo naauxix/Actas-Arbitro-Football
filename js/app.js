@@ -13,13 +13,55 @@ from "./auth/AuthGuard.js";
 import { AuthService }
 from "./auth/AuthService.js";
 
+
+
 const repository =
   new LocalStorageRepository();
 
 const app =
   document.getElementById("app");
 
+AuthService.seedAdmin()
+
 renderAuth();
+
+const currentUser =
+  AuthService.currentUser();
+
+if (currentUser) {
+
+  const userName =
+    document.getElementById(
+      "user-name"
+    );
+
+  const userRole =
+    document.getElementById(
+      "user-role"
+    );
+
+  if (userName) {
+
+    userName.textContent =
+      currentUser.name;
+  }
+
+  if (userRole) {
+
+    userRole.textContent =
+
+      currentUser.role === "admin"
+        ? "Administrador"
+        : "Árbitro";
+  }
+}
+
+document
+  .getElementById("logout-btn")
+  ?.addEventListener("click", () => {
+
+    AuthService.logout();
+  });
 
 if (
   !AuthService.isAuthenticated()
